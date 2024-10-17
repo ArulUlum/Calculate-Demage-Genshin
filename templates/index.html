@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Genshin Impact Damage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    {% block css %}{% endblock css %}
+</head>
+<body>
+    <header class="header-container">
+        <a href="/" class="header-link"><h2 class="header-title">Calculation Damage</h2></a>
+        <nav class="navigation-container">
+            <ul class="nav-list">
+                <li><a href="/about" class="nav-item">About</a></li>
+                <li><a href="/contact" class="nav-item">Contact</a></li>
+                <li><a href="/help" class="nav-item">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% block body_content %}{% endblock body_content %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+<h3>Damage</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Type Damage</th>
+            <th>Non Crit</th>
+            <th>Crit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attack in namedemage %}
+            <tr>
+                <td>{{ attack }}</td>
+                <td>{{ alldemage['nonCrit'][attack] }}</td>
+                <td>{{ alldemage['Crit'][attack] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
