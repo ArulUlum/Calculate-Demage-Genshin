@@ -1,0 +1,43 @@
+/* Header Container */
+.header-container {
+  display: flex;                       /* Mengatur elemen header dalam satu baris */
+  justify-content: space-between;     /* Menyebarkan ruang antara elemen */
+  align-items: center;                /* Menyejajarkan elemen di tengah secara vertikal */
+  padding: 10px 20px;                 /* Ruang dalam (padding) */
+  color: white;                       /* Warna teks */
+}
+
+/* Link di Header */
+.header-link {
+  text-decoration: none;  /* Menghapus garis bawah dari tautan */
+}
+
+/* Judul Header */
+.header-title {
+  margin: 0;                          /* Menghapus margin default */
+  font-size: 24px;                   /* Ukuran font */
+  font-weight: bold;                  /* Ketebalan font */
+  color: black;                       /* Mengubah warna teks menjadi hitam */
+}
+
+/* Navigasi */
+.navigation-container {
+  display: flex;                      /* Mengatur item nav dalam satu baris */
+}
+
+.nav-list {
+  list-style-type: none;              /* Menghapus titik daftar */
+  margin: 0;                          /* Menghapus margin */
+  padding: 0;                         /* Menghapus padding */
+  display: flex;                      /* Mengatur item nav dalam satu baris */
+}
+
+.nav-item {
+  margin-left: 20px;                  /* Jarak antara item nav */
+  color: white;                       /* Warna teks */
+  text-decoration: none;              /* Menghapus garis bawah */
+}
+
+.nav-item:hover {
+  text-decoration: underline;         /* Menambahkan garis bawah saat hover */
+}
