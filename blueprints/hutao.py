@@ -24,7 +24,7 @@ def skill(hp, atk, dmgbonus):
 
     return round(new_atk, 0), new_dmgbonus
 
-def AllDemage(hp, atk, deff, em, cr, cdm, dmgbonus, lvlchar, lvlenemy):
+def AllDemage(hp, atk, deff, em, cr, cdm, dmgbonus, lvlchar, lvlenemy, reaction):
 
     datanoncrit = ability.copy()
     datacrit = ability.copy()
@@ -33,8 +33,8 @@ def AllDemage(hp, atk, deff, em, cr, cdm, dmgbonus, lvlchar, lvlenemy):
         abilitycorrect = datanoncrit[key]/100
         datanoncrit[key] = Demage(ability=abilitycorrect, scale=atk, baseMultipler=None, additiveBaseBonus=None, 
                                     dmgBonus=dmgbonus, dmgReduction=None, lvlchar=lvlchar, lvlenemy=lvlenemy, 
-                                    defreduction=None, defignored=None, res=res_enemy, EM=em, reactionBonus=None, 
-                                    reactionType=None, typedmg="pyro")
+                                    defreduction=None, defignored=None, res=res_enemy, EM=em, reactionBonus=crimson["VapoMeltBonus"], 
+                                    reactionType=reaction, typedmg="pyro")
         datacrit[key] = CritDemage(cdm/100, datanoncrit[key])
 
     data = {"nonCrit": datanoncrit,

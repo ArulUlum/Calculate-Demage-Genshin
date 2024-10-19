@@ -24,6 +24,7 @@ def calculate():
             lvlchar_value = float(request.form['lvlchar'])
             lvlenemy_value = float(request.form['lvlenemy'])
             skill_active = request.form.get('skill_active') == 'on'
+            reaction = request.form.get('reaction', 'None')
 
             if skill_active:
                 new_atk_value, new_dmgbonus_value = hutao.skill(hp_value, atk_value, dmgbonus_value)
@@ -32,7 +33,7 @@ def calculate():
                 new_dmgbonus_value = 0
 
             alldemage = hutao.AllDemage(hp_value, new_atk_value, def_value, em_value, cr_value, cdm_value, 
-                                        new_dmgbonus_value, lvlchar_value, lvlenemy_value)
+                                        new_dmgbonus_value, lvlchar_value, lvlenemy_value, reaction)
             namedemage =  list(alldemage['Crit'].keys())
 
             # Jika permintaan AJAX, hanya kirim bagian hasilnya
