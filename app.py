@@ -24,16 +24,25 @@ def calculate():
             lvlchar_value = float(request.form['lvlchar'])
             lvlenemy_value = float(request.form['lvlenemy'])
             skill_active = request.form.get('skill_active') == 'on'
+            lowhp_active = request.form.get('lowhp_active') == 'on'
             reaction = request.form.get('reaction', 'None')
 
-            if skill_active:
-                new_atk_value, new_dmgbonus_value = hutao.skill(hp_value, atk_value, dmgbonus_value)
+            new_atk_value = atk_value
+            new_dmgbonus_value = dmgbonus_value
+            if lowhp_active:
+                new_atk_value, new_dmgbonus_value = hutao.lowHp(hp_value, atk_value, dmgbonus_value)
+                burst = 617
             else:
-                new_atk_value = atk_value
+                burst = 494
+
+            if skill_active:
+                new_atk_value, new_dmgbonus_value = hutao.skill(hp_value, new_atk_value, new_dmgbonus_value)
+            else:
                 new_dmgbonus_value = 0
 
+
             alldemage = hutao.AllDemage(hp_value, new_atk_value, def_value, em_value, cr_value, cdm_value, 
-                                        new_dmgbonus_value, lvlchar_value, lvlenemy_value, reaction)
+                                        new_dmgbonus_value, lvlchar_value, lvlenemy_value, reaction, burst)
             namedemage =  list(alldemage['Crit'].keys())
 
             # Jika permintaan AJAX, hanya kirim bagian hasilnya
@@ -42,7 +51,7 @@ def calculate():
                                     alldemage=alldemage, 
                                     namedemage=namedemage)
 
-            # Render template dan tampilkan hasilnya
+            # Return agar angka dalam input box tetap
             return render_template('calculate.html',
                                 hp_value=hp_value,
                                 atk_value=atk_value,

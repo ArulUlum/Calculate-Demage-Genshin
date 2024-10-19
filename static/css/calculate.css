@@ -90,6 +90,7 @@ input[type="checkbox"] {
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-right: 20px;
 }
 
 .switch input {
@@ -170,6 +171,10 @@ input:checked + .slider:before {
 .reaction-options input[type="radio"]:disabled {
     cursor: not-allowed;  /* Shows a 'disabled' icon */
     pointer-events: all !important;
+}
+
+.title-result {
+    margin-top: 50px;
 }
 
 /* Responsive Design */

@@ -67,6 +67,12 @@
                 <input type="checkbox" id="skill-switch" name="skill_active" value="on">
                 <span class="slider round"></span>
             </label>
+
+            <label for="lowhp-switch" class="switch-label">Low HP Active</label>
+            <label class="switch">
+                <input type="checkbox" id="lowhp-switch" name="lowhp_active" value="on">
+                <span class="slider round"></span>
+            </label>
         </div>
 
         <!-- Radio Buttons for "None", "Vaporise", "Melt" -->
@@ -80,7 +86,7 @@
             <label for="reaction-vaporise">
                 <span class="reaction-name">Vaporize</span>
             </label>
-            
+
             <input type="radio" id="reaction-melt" name="reaction" value="Melt"> 
             <label for="reaction-melt">
                 <span class="reaction-name">Melt</span>
@@ -89,7 +95,7 @@
     </form>
     {% if submitted %}   
     <article class="result">
-        <h3>Demage</h3>
+        <h3 class="title-result">Demage</h3>
         <table>
             <thead>
                 <tr>

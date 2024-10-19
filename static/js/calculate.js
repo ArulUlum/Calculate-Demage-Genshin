@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const skillSwitch = document.getElementById('skill-switch');
+    const lowhpSwitch = document.getElementById('lowhp-switch');
     const form = document.getElementById('calculate');
     const reactionRadios = document.querySelectorAll('.reaction-options input[type="radio"]');
 
@@ -42,6 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Send form data when the skill switch is changed
+        await sendFormData();
+    });
+
+    // Handle enabling/disabling radio buttons based on low HP switch
+    lowhpSwitch.addEventListener('change', async () => {
+        const islowhpActive = lowhpSwitch.checked;
+        // Send form data when the low hp switch is changed
         await sendFormData();
     });
 

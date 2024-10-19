@@ -60,7 +60,6 @@ def Demage(ability, scale, baseMultipler, additiveBaseBonus, dmgBonus, dmgReduct
     dmgBonusM = dmgBonusMultipler(dmgBonus, dmgReduction)
     resM = resMultipler(res)
     amplifiyingM = amplifyingMultipler(EM, reactionBonus, reactionType, typedmg)
-    print(amplifiyingM)
     
     demage = ((base * baseMultipler)+additiveBaseBonus)*dmgBonusM*defM*resM*amplifiyingM
 

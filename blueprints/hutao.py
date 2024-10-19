@@ -9,9 +9,7 @@ ability = {"Normalatk1": 83.6,
           "Normalatk6": 153.4, 
           "ChargeAtk": 116.7, 
           "PlungeLow": 233, 
-          "PlungeHigh": 292,
-          "BurstHighHp": 494,
-          "BurstLowHp": 617}
+          "PlungeHigh": 292}
 
 crimson = {"PyroBonus": 15,
            "VapoMeltBonus": 15}
@@ -19,12 +17,19 @@ crimson = {"PyroBonus": 15,
 res_enemy = 0.1
 
 def skill(hp, atk, dmgbonus):
-    new_atk = 0.0626*hp+atk
-    new_dmgbonus = dmgbonus+(crimson["PyroBonus"]*0.5)
+    new_atk = 0.0626*hp + atk #pasif hutao
+    new_dmgbonus = dmgbonus+(crimson["PyroBonus"]*0.5) #pasif crimsom
 
     return round(new_atk, 0), new_dmgbonus
 
-def AllDemage(hp, atk, deff, em, cr, cdm, dmgbonus, lvlchar, lvlenemy, reaction):
+def lowHp(hp, atk, dmgbonus):
+    new_atk = 0.01*hp + atk #pasif homa
+    new_dmgbonus = dmgbonus + 33
+
+    return round(new_atk, 0), new_dmgbonus
+
+def AllDemage(hp, atk, deff, em, cr, cdm, dmgbonus, lvlchar, lvlenemy, reaction, burst):
+    ability["Burst"] = burst
 
     datanoncrit = ability.copy()
     datacrit = ability.copy()
