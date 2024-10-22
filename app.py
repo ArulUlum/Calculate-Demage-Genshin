@@ -14,35 +14,22 @@ def calculate():
     if request.method == 'POST':
         try:
             # Ambil data dari form
-            hp_value = float(request.form['hp'])
-            atk_value = float(request.form['atk'])
-            def_value = float(request.form['def'])
-            em_value = float(request.form['em'])
-            cr_value = float(request.form['cr'])
-            cdm_value = float(request.form['cdm'])
-            dmgbonus_value = float(request.form['dmgbonus'])
-            lvlchar_value = float(request.form['lvlchar'])
-            lvlenemy_value = float(request.form['lvlenemy'])
-            skill_active = request.form.get('skill_active') == 'on'
-            lowhp_active = request.form.get('lowhp_active') == 'on'
-            reaction = request.form.get('reaction', 'None')
+            data = request.form
+            hp_value = float(data['hp'])
+            atk_value = float(data['atk'])
+            def_value = float(data['def'])
+            em_value = float(data['em'])
+            cr_value = float(data['cr'])
+            cdm_value = float(data['cdm'])
+            dmgbonus_value = float(data['dmgbonus'])
+            lvlchar_value = float(data['lvlchar'])
+            lvlenemy_value = float(data['lvlenemy'])
+            skill_active = data.get('skill_active') == 'on'
+            lowhp_active = data.get('lowhp_active') == 'on'
+            reaction = data.get('reaction', 'None')
 
-            new_atk_value = atk_value
-            new_dmgbonus_value = dmgbonus_value
-            if lowhp_active:
-                new_atk_value, new_dmgbonus_value = hutao.lowHp(hp_value, atk_value, dmgbonus_value)
-                burst = 617
-            else:
-                burst = 494
-
-            if skill_active:
-                new_atk_value, new_dmgbonus_value = hutao.skill(hp_value, new_atk_value, new_dmgbonus_value)
-            else:
-                new_dmgbonus_value = 0
-
-
-            alldemage = hutao.AllDemage(hp_value, new_atk_value, def_value, em_value, cr_value, cdm_value, 
-                                        new_dmgbonus_value, lvlchar_value, lvlenemy_value, reaction, burst)
+            alldemage = hutao.AllDemage(hp_value, atk_value, def_value, em_value, cr_value, cdm_value, dmgbonus_value, 
+                                        lvlchar_value, lvlenemy_value, reaction, lowhp_active, skill_active)
             namedemage =  list(alldemage['Crit'].keys())
 
             # Jika permintaan AJAX, hanya kirim bagian hasilnya
@@ -66,9 +53,8 @@ def calculate():
                                 namedemage = namedemage,
                                 submitted=True)
         except ValueError:
-            # Tangani error jika konversi gagal
-            flash('Input tidak valid. Harap masukkan angka yang benar.')
-            return redirect(request.url)
+            # Tangani error 
+            return redirect("/calculate")
     
     # Saat pertama kali halaman dimuat, form harus tetap tampil
     return render_template('calculate.html', submitted=False)

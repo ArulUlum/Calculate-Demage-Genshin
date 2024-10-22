@@ -7,6 +7,8 @@ def defMultipler(lvlchar, lvlenemy, reduction, ignored):
     return defm
 
 def resMultipler(res):
+    res /= 100 
+
     if res < 0:
         resm = 1-(res/2)
     if res >= 0.75:

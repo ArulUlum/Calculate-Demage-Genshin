@@ -7,29 +7,44 @@ ability = {"Normalatk1": 83.6,
           "Normalatk5.1": 59.4, 
           "Normalatk5.2": 62.8, 
           "Normalatk6": 153.4, 
-          "ChargeAtk": 116.7, 
+          "ChargeAtk": 242.6, 
           "PlungeLow": 233, 
           "PlungeHigh": 292}
 
-crimson = {"PyroBonus": 15,
-           "VapoMeltBonus": 15}
+burst = {"highHp": 494,
+         "lowHp": 617}
 
-res_enemy = 0.1
+crimson = {"PyroBonus": 15,
+           "VapoMeltBonus": 15,
+           "BOB": 40} #	Burning, Overloaded, Burgeon
+
+res_enemy = 10
 
 def skill(hp, atk, dmgbonus):
-    new_atk = 0.0626*hp + atk #pasif hutao
+    new_atk = 0.0626*hp + atk #skill hutao
     new_dmgbonus = dmgbonus+(crimson["PyroBonus"]*0.5) #pasif crimsom
 
-    return round(new_atk, 0), new_dmgbonus
+    return new_atk, new_dmgbonus
 
 def lowHp(hp, atk, dmgbonus):
     new_atk = 0.01*hp + atk #pasif homa
-    new_dmgbonus = dmgbonus + 33
+    new_dmgbonus = dmgbonus + 33 #pasif hutao
 
-    return round(new_atk, 0), new_dmgbonus
+    return new_atk, new_dmgbonus
 
-def AllDemage(hp, atk, deff, em, cr, cdm, dmgbonus, lvlchar, lvlenemy, reaction, burst):
-    ability["Burst"] = burst
+def AllDemage(hp, atk, deff, em, cr, cdm, dmgbonus, lvlchar, lvlenemy, reaction, lowhp_active, skill_active):
+    if lowhp_active:
+        atk, dmgbonus = lowHp(hp, atk, dmgbonus)
+        burstMultipler = burst["lowHp"]
+    else:
+        burstMultipler = burst["highHp"]
+
+    if skill_active:
+        atk, dmgbonus = skill(hp, atk, dmgbonus)
+    else:
+        dmgbonus = 0
+    
+    ability["Burst"] = burstMultipler
 
     datanoncrit = ability.copy()
     datacrit = ability.copy()
